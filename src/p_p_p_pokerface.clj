@@ -1,10 +1,12 @@
 (ns p-p-p-pokerface)
 
-(defn rank [card]
-  nil)
+(defn rank [[rank, _]]
+  (let [replacements {\T 10, \J 11, \Q 12, \K 13, \A 14}
+        rank-replaced (replacements rank)]
+  (if (nil? rank-replaced) (Integer/valueOf (str rank)) rank-replaced)))
 
-(defn suit [card]
-  nil)
+(defn suit [[_, s]]
+  (str s))
 
 (defn pair? [hand]
   nil)
