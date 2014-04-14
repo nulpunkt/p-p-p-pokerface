@@ -8,17 +8,22 @@
 (defn suit [[_, s]]
   (str s))
 
+(defn max-many-of-any-kind [hand]
+  (let [ranks (map rank hand)
+       rank-frequencies (frequencies ranks)]
+  (apply max (vals rank-frequencies))))
+
 (defn pair? [hand]
-  nil)
+  (> (max-many-of-any-kind hand) 1))
 
 (defn three-of-a-kind? [hand]
-  nil)
+  (> (max-many-of-any-kind hand) 2))
 
 (defn four-of-a-kind? [hand]
-  nil)
+  (> (max-many-of-any-kind hand) 3))
 
 (defn flush? [hand]
-  nil)
+  (apply = (map suit hand)))
 
 (defn full-house? [hand]
   nil)
