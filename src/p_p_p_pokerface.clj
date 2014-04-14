@@ -8,10 +8,12 @@
 (defn suit [[_, s]]
   (str s))
 
+(defn rank-frequencies [hand]
+  (let [ranks (map rank hand)]
+  (frequencies ranks)))
+
 (defn max-many-of-any-kind [hand]
-  (let [ranks (map rank hand)
-       rank-frequencies (frequencies ranks)]
-  (apply max (vals rank-frequencies))))
+  (apply max (vals (rank-frequencies hand))))
 
 (defn pair? [hand]
   (> (max-many-of-any-kind hand) 1))
@@ -26,10 +28,10 @@
   (apply = (map suit hand)))
 
 (defn full-house? [hand]
-  nil)
+  (= (set [3 2]) (set (vals (rank-frequencies hand)))))
 
 (defn two-pairs? [hand]
-  nil)
+  (= [1 2 2] (sort (vals (rank-frequencies hand)))))
 
 (defn straight? [hand]
   nil)
