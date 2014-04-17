@@ -34,7 +34,10 @@
   (= [1 2 2] (sort (vals (rank-frequencies hand)))))
 
 (defn straight? [hand]
-  nil)
+  (let [ranks (sort (map rank hand))
+        low-rank (first ranks)
+        should-match (range low-rank (+ low-rank 5))]
+  (or (= should-match ranks) (= [2 3 4 5 14] ranks))))
 
 (defn straight-flush? [hand]
   nil)
