@@ -40,7 +40,7 @@
   (or (= should-match ranks) (= [2 3 4 5 14] ranks))))
 
 (defn straight-flush? [hand]
-  nil)
+  (and (straight? hand) (flush? hand)))
 
 (defn value [hand]
   nil)
